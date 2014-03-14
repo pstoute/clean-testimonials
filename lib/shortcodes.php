@@ -162,8 +162,6 @@ function shortcode_testimonial_submission ( $atts ) {
 		// Insert new testimonial, if successful, update meta data
 		if( ( $post_id = wp_insert_post( $testimonial, false ) ) && $captcha ) {
 
-			echo '<pre>' . print_r( $_POST, true ) . '</pre>';
-
 			// Cache testimonial post we just inserted
 			$testimonial = get_post( $post_id );
 
@@ -203,9 +201,6 @@ function shortcode_testimonial_submission ( $atts ) {
 					'Reply-to: ' . $email
 				);
 
-				echo '<div>===========================</div>';
-				echo $html;
-				echo '<div>===========================</div>';
 				wp_mail( $email, 'New Testimonial | ' . get_option( 'blogname' ), $html, $headers );
 
 			}
