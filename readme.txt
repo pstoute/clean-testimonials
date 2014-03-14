@@ -96,6 +96,11 @@ The following information might be handy for you to know.
 5. Example use of the [testimonial-submission-form] shortcode. This shortcode will turn this page into a Testimonial submission page for your users
 
 == Changelog ==
+= 1.4 =
+* Introduced new filters to customise testimonial submission behaviour. See FAQ.
+* Added option to customize CAPTCHA theme
+* Added shortcode attribute to allow AJAX powered random testimonial cycling
+
 = 1.3.5 =
 * Bug fixes. Woops!
 
