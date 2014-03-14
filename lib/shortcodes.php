@@ -183,7 +183,7 @@ function shortcode_testimonial_submission ( $atts ) {
 			// Send email notification to admin
 			if( apply_filters( 'ct_send_new_testimonial_notification', true ) ) {
 
-				$email = get_option( 'admin_email' );
+				$email = apply_filters( 'new_testimonial_notification_email', get_option( 'admin_email' ) );
 
 				// Start output buffering and grab contents of email
 				ob_start();
@@ -201,16 +201,17 @@ function shortcode_testimonial_submission ( $atts ) {
 					'Reply-to: ' . $email
 				);
 
+				if( apply_filters( 'new_testimonial_notification', true ) )
 				wp_mail( $email, 'New Testimonial | ' . get_option( 'blogname' ), $html, $headers );
 
 			}
 
-			echo '<p>We successfully received your testimonial. If approved, it will appear on our website. Thank you!</p>';
+			echo sprintf( '<p>%s</p>', apply_filters( 'new_testimonial_confirmation_message', 'We successfully received your testimonial. If approved, it will appear on our website. Thank you!' ) );
 
 		}
 		else {
 
-			echo '<p class="error">Sorry, but there was a problem with submitting your testimonial. Please ensure all required fields have been supplied and that you entered the CAPTCHA code correctly.</p>';
+			echo sprintf( '<p class="error">%s</p>', apply_filters( 'new_testimonial_failure_message', 'Sorry, but there was a problem with submitting your testimonial. Please ensure all required fields have been supplied and that you entered the CAPTCHA code correctly.' ) );
 
 		}
 
