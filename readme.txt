@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=hello
 Tags: testimonials,testimonial,recommendation,recommend,testimony,reference,referral,widget,reviews,review
 Requires at least: 2.5
 Tested up to: 3.8.1
-Stable tag: 1.3.5
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
