@@ -219,6 +219,11 @@ function shortcode_testimonial_submission ( $atts ) {
 	?>
 
 	<script src="<?php echo plugins_url( 'assets/js/validation.js', dirname( __FILE__ ) ); ?>"></script>
+	<script type="text/javascript">
+		var RecaptchaOptions = {
+			theme: '<?php echo apply_filters( 'testimonial_submission_captcha_theme', 'clean' ); ?>'
+		}
+	</script>
 
 	<form id="add-testimonial" enctype="multipart/form-data" name="add-testimonial" method="POST" action="<?php the_permalink(); ?>">
 
