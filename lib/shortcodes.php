@@ -52,7 +52,10 @@ function shortcode_testimonials ( $atts ) {
 
 		'posts_per_page' => isset( $atts['per_page'] ) ? $atts['per_page'] : 2,
 		'paged' => get_query_var( 'paged' ),
-		'post_type' => 'testimonial',
+		'order' => isset( $atts['order'] ) ? $atts['order'] : 'DESC',
+		'orderby' => isset( $atts['orderby'] ) ? $atts['orderby'] : 'date',
+		'post_type' => 'testimonial'
+
 	);
 
 	$output = '';

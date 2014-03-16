@@ -98,8 +98,9 @@ The following information might be handy for you to know.
 == Changelog ==
 = 1.4 =
 * Introduced new filters to customise testimonial submission behaviour. See FAQ.
-* Added option to customize CAPTCHA theme
+* Added filter to customize CAPTCHA theme. EG, red (default), white, blackglass or clean
 * Added shortcode attribute to allow AJAX powered random testimonial cycling
+* Added ability to specify testimonial ordering in the [testimonials] shortcode. EG, [testimonials category="5" order="post_date" orderby="DESC"]
 
 = 1.3.5 =
 * Bug fixes. Woops!
