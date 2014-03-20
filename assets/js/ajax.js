@@ -17,6 +17,8 @@ jQuery( function($) {
 				success: function(result) {
 
 					$(result.data.markup).insertBefore(testimonial);
+					testimonial.remove();
+					
 					attach_to = result.data.testimonial_id;
 
 				}
