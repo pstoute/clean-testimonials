@@ -15,8 +15,8 @@ final class WP_Testimonial {
 
 		if( !is_null( $post_id ) ) {
 
-			$testimonial 	= self::get_instance( $post_id );
-			$meta 				= get_post_meta( $testimonial->ID, '' );
+			$testimonial = self::get_instance( $post_id );
+			$meta = get_post_meta( $testimonial->ID, '' );
 
 			// Copy WP_Post public members
 			foreach( $testimonial as $key => $value )
@@ -34,7 +34,7 @@ final class WP_Testimonial {
 
 	public function render () { ?>
 
-		<div class="single-testimonial">
+		<div class="single-testimonial testimonial-<?php echo $this->ID; ?>">
 
 			<h3><?php echo $this->post_title; ?></h3>
 

@@ -13,9 +13,20 @@ function shortcode_testimonial ( $atts ) {
 	$args = array(
 
 		'post_type' => 'testimonial',
-		'numberposts' => 1
+		'posts_per_page' => 1
 
 	);
+
+	if( isset( $atts['category'] ) ) {
+
+		$category = $atts['category'];
+
+		if( is_numeric( $category ) )
+		$category = get_term_by( 'id', $category, 'testimonial_category' )->slug;
+
+		$args['testimonial_category'] = $category;
+
+	}
 
 	if( is_numeric( $atts['id'] ) )
 		$args['include'] = $atts['id'];
@@ -26,16 +37,20 @@ function shortcode_testimonial ( $atts ) {
 
 		ob_start();
 
-		foreach( $testimonials as $testimonial ) {
-
-			$testimonial = new WP_Testimonial( $testimonial->ID );
-			$testimonial->word_limit = ( isset( $atts['word_limit'] ) && is_numeric( $atts['word_limit'] ) ? $atts['word_limit'] : -1 );
-			$testimonial->render();
-
-		}
+		$testimonial = new WP_Testimonial( array_pop( $testimonials )->ID );
+		$testimonial->word_limit = ( isset( $atts['word_limit'] ) && is_numeric( $atts['word_limit'] ) ? $atts['word_limit'] : -1 );
+		$testimonial->render();
 
 		$output = ob_get_contents();
 		ob_end_clean();
+
+		if( isset( $atts['cycle'] ) && $atts['cycle'] ) {
+
+			$output = '<script type="text/javascript" src="' . plugins_url( 'assets/js/ajax.js', dirname( __FILE__ ) ) . '"></script>' .
+								sprintf( '<script type="text/javascript">jQuery(document).ready( function() { cycleTestimonial(%s, "%s"); });</script>', $testimonial->ID, admin_url( 'admin-ajax.php' ) ) .
+								$output;
+
+		}
 
 		return $output;
 
