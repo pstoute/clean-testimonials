@@ -46,7 +46,7 @@ final class WP_Testimonial {
 
 				<?php
 
-				if( $this->word_limit > 0 ) {
+				if( isset( $this->word_limit ) && $this->word_limit > 0 ) {
 
 					$words = explode( ' ', $this->post_content );
 					echo implode( ' ',
