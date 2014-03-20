@@ -79,6 +79,14 @@ Yes, you can use the Testimonial Widget and specify the "random" option, or you 
 
 Yes. Specify the "per_page" attribute when using the [testimonials] shortcode. EG, [testimonials category="10" per_page="5"].
 
+= Available filters =
+The following filters are available in Clean Testimonials so you can customise it to your liking.
+
+1. new_testimonial_notification - Filter whether an email notification should be sent to the administrator when a new testimonial is submitted.
+2. new_testimonial_email - Filter which email address which the new testimonial notification email is sent to. Defaults to administrator email.
+3. new_testimonial_confirmation_message - Filter the text which is displayed when a new testimonial is received.
+4. new_testimonial_failure_message - Filter the text which is displayed when a testimonial submission fails.
+
 = I am a developer, what can you tell me? =
 
 The following information might be handy for you to know.
@@ -100,7 +108,7 @@ The following information might be handy for you to know.
 * Introduced new filters to customize testimonial submission behaviour. See FAQ.
 * Added filter to customize CAPTCHA theme. EG, red (default), white, blackglass or clean. See FAQ.
 * Added ability to specify ordering in the [testimonials] shortcode. EG, [testimonials category="5" order="date" orderby="desc"]
-* Added shortcode attribute to allow AJAX powered random testimonial cycling
+* Added shortcode attribute to allow basic AJAX powered random testimonial cycling
 
 = 1.3.5 =
 * Bug fixes. Woops!
