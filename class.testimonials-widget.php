@@ -22,10 +22,14 @@ final class Testimonials_Widget extends WP_Widget {
 		if( is_numeric( $instance['testimonial_id'] ) )
 			$args['include'] = $instance['testimonial_id'];
 		else {
-			$args['orderby'] = 'rand';
+
+			if( is_array( $instance['testimonial_random_category'] ) )
 			$args['testimonial_category'] = implode( ',', array_keys( $instance['testimonial_random_category'] ) );
+			
+			$args['orderby'] = 'rand';
+
 		}
-		
+
 		if( $testimonials = get_posts( $args ) )
 
 			foreach( $testimonials as $testimonial ) {
@@ -44,7 +48,7 @@ final class Testimonials_Widget extends WP_Widget {
 		if( !empty( $new_instance['testimonial_id'] ) )
 			$instance['testimonial_id'] = $new_instance['testimonial_id'];
 
-		$instance['testimonial_word_limit'] = isset( $new_instance['testimonial_word_limit'] ) ? $new_instance['testimonial_word_limit'] : 0;	
+		$instance['testimonial_word_limit'] = isset( $new_instance['testimonial_word_limit'] ) ? $new_instance['testimonial_word_limit'] : 0;
 		$instance['testimonial_random_category'] = $new_instance['testimonial_random_category'];
 
 
