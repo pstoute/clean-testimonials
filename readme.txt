@@ -104,6 +104,9 @@ The following information might be handy for you to know.
 5. Example use of the [testimonial-submission-form] shortcode. This shortcode will turn this page into a Testimonial submission page for your users
 
 == Changelog ==
+= 1.4.1 =
+* Fixed bug causing testimonial widget to display a PHP warning when no random categories were selected
+
 = 1.4 =
 * Introduced new filters to customize testimonial submission behaviour. See FAQ.
 * Added filter to customize CAPTCHA theme. EG, red (default), white, blackglass or clean. See FAQ.
