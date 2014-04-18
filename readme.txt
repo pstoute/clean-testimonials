@@ -104,6 +104,9 @@ The following information might be handy for you to know.
 5. Example use of the [testimonial-submission-form] shortcode. This shortcode will turn this page into a Testimonial submission page for your users
 
 == Changelog ==
+= 1.4.2 =
+* Simple maintenance release. No functionality change.
+
 = 1.4.1 =
 * Fixed bug causing testimonial widget to display a PHP warning when no random categories were selected
 
