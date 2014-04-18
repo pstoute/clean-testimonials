@@ -1,5 +1,5 @@
 === Clean Testimonials ===
-Contributors: hello@lukerollans.me
+Contributors: hello@lukerollans.me, Plugify
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=hello%40lukerollans%2eme&lc=GB&item_name=Plugin%20Development%20Donation&currency_code=USD
 Tags: testimonials,testimonial,recommendation,recommend,testimony,reference,referral,widget,reviews,review
 Requires at least: 2.5
