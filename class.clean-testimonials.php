@@ -244,15 +244,18 @@ final class Plugify_Clean_Testimonials {
 
 	public static function ajax_get_random_testimonial () {
 
-		if( $testimonial = array_pop( get_posts( array(
+		$testimonial = get_posts( array(
 
 			'post_type' => 'testimonial',
 			'posts_per_page' => 1,
 			'orderby' => 'rand'
 
-		) ) ) ) {
+		) );
 
-			$testimonial = new WP_Testimonial( $testimonial->ID );
+		if( $testimonial ) {
+			
+			$testimonial = new WP_Testimonial( $testimonial[0]->ID );
+			$testimonial->word_limit = isset( $_POST['word_limit'] ) ? $_POST['word_limit'] : -1;
 
 			ob_start();
 
@@ -264,8 +267,9 @@ final class Plugify_Clean_Testimonials {
 			wp_send_json_success( array( 'markup' => $markup, 'testimonial_id' => $testimonial->ID ) );
 
 		}
-		else
+		else {
 			wp_send_json_error();
+		}
 
 	}
 

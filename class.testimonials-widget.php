@@ -12,7 +12,10 @@ final class Testimonials_Widget extends WP_Widget {
 
 	function widget ( $args, $instance ) {
 
-		$args = array(
+		extract( $args );
+
+		// Get testimonials to display
+		$query_args = array(
 
 			'post_type' => 'testimonial',
 			'numberposts' => 1
@@ -20,25 +23,37 @@ final class Testimonials_Widget extends WP_Widget {
 		);
 
 		if( is_numeric( $instance['testimonial_id'] ) )
-			$args['include'] = $instance['testimonial_id'];
+			$query_args['include'] = $instance['testimonial_id'];
 		else {
 
 			if( is_array( $instance['testimonial_random_category'] ) )
-			$args['testimonial_category'] = implode( ',', array_keys( $instance['testimonial_random_category'] ) );
+			$query_args['testimonial_category'] = implode( ',', array_keys( $instance['testimonial_random_category'] ) );
 			
-			$args['orderby'] = 'rand';
-
+			$query_args['orderby'] = 'rand';
 		}
 
-		if( $testimonials = get_posts( $args ) )
+		$testimonials = get_posts( $query_args );
+
+		// Widget title
+		$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
+
+		echo $before_widget;
+
+		if ( strlen( $title ) ) {			
+			echo $before_title . $title . $after_title;
+		}		
+
+		if ( $testimonials ) {
 
 			foreach( $testimonials as $testimonial ) {
 				$testimonial = new WP_Testimonial( $testimonial->ID );
 				$testimonial->word_limit = isset( $instance['testimonial_word_limit'] ) ? $instance['testimonial_word_limit'] : 0;
 			}
 
-		$testimonial->render();
+			$testimonial->render(true);
+		}
 
+		echo $after_widget;
 	}
 
 	function update ( $new_instance, $old_instance ) {
@@ -47,6 +62,9 @@ final class Testimonials_Widget extends WP_Widget {
 
 		if( !empty( $new_instance['testimonial_id'] ) )
 			$instance['testimonial_id'] = $new_instance['testimonial_id'];
+
+		if( !empty( $new_instance['title'] ) )
+			$instance['title'] = $new_instance['title'];
 
 		$instance['testimonial_word_limit'] = isset( $new_instance['testimonial_word_limit'] ) ? $new_instance['testimonial_word_limit'] : 0;
 		$instance['testimonial_random_category'] = $new_instance['testimonial_random_category'];
@@ -60,6 +78,7 @@ final class Testimonials_Widget extends WP_Widget {
 
 		$defaults = array(
 
+			'title' => '',
 			'testimonial_id' => 'random',
 			'testimonial_word_limit' => NULL,
 			'testimonial_random_category' => 'derp'
@@ -69,6 +88,11 @@ final class Testimonials_Widget extends WP_Widget {
 		$instance = wp_parse_args( (array)$instance, $defaults );
 
 		?>
+
+		<p>
+			<label for="testimonials_title">Title:</label>
+			<input type="text" id="testimonials_title" name="<?php echo $this->get_field_name( 'title' ) ?>" style="width: 100%;" value="<?php echo $instance['title'] ?>" />
+		</p>
 
 		<p>
 			<label for="testimonial_id">Select a Testimonial to display</label>

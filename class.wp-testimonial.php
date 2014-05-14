@@ -32,8 +32,24 @@ final class WP_Testimonial {
 
 	}
 
-	public function render () { ?>
+	/**
+	 * Render a testimonial. 
+	 *
+	 * @param string $context
+	 * @return string
+	 */
+	public function render($context = 'shortcode') { 
 
+		// Allow plugins/themes to render this in their own way
+		$pre_render = apply_filters( 'ct_pre_render_testimonial', '', $this, $context );
+
+		if ( strlen( $pre_render ) ) {
+			echo $pre_render;
+			return;
+		}
+
+		ob_start();
+		?>
 		<div class="single-testimonial testimonial-<?php echo $this->ID; ?>">
 
 			<h3><?php echo $this->post_title; ?></h3>
@@ -80,6 +96,8 @@ final class WP_Testimonial {
 
 		<?php
 
+		// Plugins/themes can filter this here
+		echo apply_filters( 'ct_render_testimonial', ob_get_clean(), $this, $context );
 	}
 
 	public static function get_instance ( $post_id ) {
