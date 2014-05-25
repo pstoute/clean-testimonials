@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Clean Testimonials
-Plugin URI: http://plugify.io/plugin/clean-testimonials
+Plugin URI: http://plugify.io
 Description: Allows you to easily and quickly add Testimonials to your WordPress website
 Author: Plugify
-Version: 1.4.2
-Author URI: http://www.lukerollans.me
+Version: 1.5
+Author URI: https://plugify.io
 */
 
 // Ensure WordPress has been bootstrapped

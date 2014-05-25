@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=hello
 Tags: testimonials,testimonial,recommendation,recommend,testimony,reference,referral,widget,reviews,review
 Requires at least: 2.5
 Tested up to: 3.8.1
-Stable tag: 1.4.2
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -104,6 +104,15 @@ The following information might be handy for you to know.
 5. Example use of the [testimonial-submission-form] shortcode. This shortcode will turn this page into a Testimonial submission page for your users
 
 == Changelog ==
+= 1.5 =
+* Added ct_pre_render_testimonial, ct_render_testimonial and ct_after_render_testimonial hooks.
+* ct_pre_render_testimonial is a filter which allows a developer to completely override how a testimonial looks.
+* ct_render_testimonial is a filter which allows a developer to filter the default testimonial styling before Clean Testimonials outputs it.
+* ct_after_render_testimonial is an action which triggers every time a testimonial is rendered, allowing you to perform your own actions afterwards.
+* Added 'context' parameter to each testimonial render (including the above hooks). This allows a developer further flexibility in how a testimonial should be rendered.
+* Minor tweak to the testimonial cycle code
+* The testimonial cycle AJAX request now takes 'context' and 'word_limit' as a parameter
+
 = 1.4.2 =
 * Simple maintenance release. No functionality change.
 
