@@ -33,71 +33,79 @@ final class WP_Testimonial {
 	}
 
 	/**
-	 * Render a testimonial. 
+	 * Render a testimonial.
 	 *
 	 * @param string $context
 	 * @return string
 	 */
-	public function render($context = 'shortcode') { 
+	public function render( $context = 'shortcode' ) {
 
-		// Allow plugins/themes to render this in their own way
+		do_action( 'ct_before_render_testimonial', $this, $context );
+
+		// Allow plugins/themes to completely filter how a testimonial is rendered.
+		// If this filter returns 1 character or more, it will override the default render process
 		$pre_render = apply_filters( 'ct_pre_render_testimonial', '', $this, $context );
 
-		if ( strlen( $pre_render ) ) {
+		if ( strlen( $pre_render ) >= 1 ) {
 			echo $pre_render;
-			return;
+		}
+		else {
+
+			ob_start();
+			?>
+			<div class="single-testimonial testimonial-<?php echo $this->ID; ?>">
+
+				<h3><?php echo $this->post_title; ?></h3>
+
+				<blockquote>
+
+					<?php if( has_post_thumbnail( $this->ID ) ): $image = wp_get_attachment_image_src( get_post_thumbnail_id( $this->ID ), array( 200, 200 ) ); ?>
+					<img style="float: left; padding: 10px;" src="<?php echo $image[0]; ?>" width="<?php echo $image[1]; ?>" height="<?php echo $image[2]; ?>" />
+					<?php endif; ?>
+
+					<?php
+
+					if( isset( $this->word_limit ) && $this->word_limit > 0 ) {
+
+						$words = explode( ' ', $this->post_content );
+						echo implode( ' ',
+							( count( $words ) <= $this->word_limit ? $words : array_slice( $words, 0, $this->word_limit ) )
+						) . '... <a href="' . get_permalink( $this->ID ) . '">Read More</a>';
+
+					}
+					else echo $this->post_content;
+
+					?>
+
+				</blockquote>
+
+				<h5>
+
+					<?php if( !empty( $this->company ) ): ?>
+					<?php echo $this->client; ?>,<br /><?php echo $this->company; ?>
+					<?php else: ?>
+					<?php echo $this->client; ?>
+					<?php endif; ?>
+
+					<?php if( testimonial_has_permission( $this->ID ) ): ?>
+					<?php echo sprintf( '<br />Web: <a href="%s">%s</a>,<br />Email: <a href="mailto:%s">%s</a>', $this->website, $this->website, $this->email, $this->email ); ?>
+					<?php endif; ?>
+
+				</h5>
+
+				<br clear="all" />
+
+			</div>
+
+			<?php
+
+			// Allow plugins and themes to filter the default testimonial render markup
+			echo apply_filters( 'ct_render_testimonial', ob_get_clean(), $this, $context );
+
 		}
 
-		ob_start();
-		?>
-		<div class="single-testimonial testimonial-<?php echo $this->ID; ?>">
+		do_action( 'ct_after_render_testimonial', $this, $context );
 
-			<h3><?php echo $this->post_title; ?></h3>
-
-			<blockquote>
-
-				<?php if( has_post_thumbnail( $this->ID ) ): $image = wp_get_attachment_image_src( get_post_thumbnail_id( $this->ID ), array( 200, 200 ) ); ?>
-				<img style="float: left; padding: 10px;" src="<?php echo $image[0]; ?>" width="<?php echo $image[1]; ?>" height="<?php echo $image[2]; ?>" />
-				<?php endif; ?>
-
-				<?php
-
-				if( isset( $this->word_limit ) && $this->word_limit > 0 ) {
-
-					$words = explode( ' ', $this->post_content );
-					echo implode( ' ',
-						( count( $words ) <= $this->word_limit ? $words : array_slice( $words, 0, $this->word_limit ) )
-					) . '... <a href="' . get_permalink( $this->ID ) . '">Read More</a>';
-
-				}
-				else echo $this->post_content;
-
-				?>
-
-			</blockquote>
-
-			<h5>
-
-				<?php if( !empty( $this->company ) ): ?>
-				<?php echo $this->client; ?>,<br /><?php echo $this->company; ?>
-				<?php else: ?>
-				<?php echo $this->client; ?>
-				<?php endif; ?>
-
-				<?php if( testimonial_has_permission( $this->ID ) ): ?>
-				<?php echo sprintf( '<br />Web: <a href="%s">%s</a>,<br />Email: <a href="mailto:%s">%s</a>', $this->website, $this->website, $this->email, $this->email ); ?>
-				<?php endif; ?>
-
-			</h5>
-
-			<br clear="all" />
-
-		</div>
-
-		<?php
-
-		// Plugins/themes can filter this here
-		echo apply_filters( 'ct_render_testimonial', ob_get_clean(), $this, $context );
 	}
 
 	public static function get_instance ( $post_id ) {
