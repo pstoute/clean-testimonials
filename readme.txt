@@ -113,6 +113,8 @@ The following information might be handy for you to know.
 * Minor tweak to the testimonial cycle code
 * The testimonial cycle AJAX request now takes 'context' and 'word_limit' as a parameter
 
+Props to @ericdaams for this release!
+
 = 1.4.2 =
 * Simple maintenance release. No functionality change.
 
