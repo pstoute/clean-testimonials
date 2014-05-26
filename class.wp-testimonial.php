@@ -40,7 +40,7 @@ final class WP_Testimonial {
 	 */
 	public function render( $context = 'shortcode' ) {
 
-		do_action( 'ct_before_render_testimonial', $this, $context );
+		do_action( 'ct_before_render_testimonial', &$this, $context );
 
 		// Allow plugins/themes to completely filter how a testimonial is rendered.
 		// If this filter returns 1 character or more, it will override the default render process
@@ -104,7 +104,7 @@ final class WP_Testimonial {
 
 		}
 
-		do_action( 'ct_after_render_testimonial', $this, $context );
+		do_action( 'ct_after_render_testimonial', &$this, $context );
 
 	}
 
