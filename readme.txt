@@ -79,13 +79,20 @@ Yes, you can use the Testimonial Widget and specify the "random" option, or you 
 
 Yes. Specify the "per_page" attribute when using the [testimonials] shortcode. EG, [testimonials category="10" per_page="5"].
 
+= Available actions =
+The following actions are available in Clean Testimonials which allow you to hook in to useful events.
+1. ct_before_render_testimonial - Action fires right before a testimonial is rendered. Passes the testimonial object by reference and context.
+1. ct_after_render_testimonial - Action fires right after a testimonial is rendered. Passes the testimonial object by reference and context.
+
 = Available filters =
 The following filters are available in Clean Testimonials so you can customise it to your liking.
 
-1. new_testimonial_notification - Filter whether an email notification should be sent to the administrator when a new testimonial is submitted.
-2. new_testimonial_email - Filter which email address which the new testimonial notification email is sent to. Defaults to administrator email.
-3. new_testimonial_confirmation_message - Filter the text which is displayed when a new testimonial is received.
-4. new_testimonial_failure_message - Filter the text which is displayed when a testimonial submission fails.
+1. ct_pre_render_testimonial - Allows you to filter the markup of testimonial output before the default markup is generated
+2. ct_render_testimonial - Allows you to filter the markup of a testimonial after it has been rendered by the plugin, right before it is output to the browser
+3. new_testimonial_notification - Filter whether an email notification should be sent to the administrator when a new testimonial is submitted.
+4. new_testimonial_email - Filter which email address which the new testimonial notification email is sent to. Defaults to administrator email.
+5. new_testimonial_confirmation_message - Filter the text which is displayed when a new testimonial is received.
+6. new_testimonial_failure_message - Filter the text which is displayed when a testimonial submission fails.
 
 = I am a developer, what can you tell me? =
 
