@@ -13,7 +13,7 @@ Add Testimonials to your WordPress website. Simple, easy, quick and clean.
 == Description ==
 
 = Have a feature request? =
-Sweet! Feature requsts on Github: https://github.com/lukerollans/clean-testimonials/issues?labels=enhancement
+Sweet! Feature requests on Github: https://github.com/lukerollans/clean-testimonials/issues?labels=enhancement
 
 = Want to contribute? =
 Clean Testimonials on Github: http://github.com/lukerollans/clean-testimonials
