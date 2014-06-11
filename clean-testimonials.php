@@ -15,14 +15,17 @@ if( !defined( 'ABSPATH' ) )
 $path = trailingslashit( dirname( __FILE__ ) );
 
 // Ensure our class dependencies class has been defined
-if( !class_exists( 'Testimonials_Widget' ) )
-require_once( $path . 'class.testimonials-widget.php' );
+if( !class_exists( 'Testimonials_Widget' ) ) {
+	require_once( $path . 'class.testimonials-widget.php' );
+}
 
-if( !class_exists( 'Plugify_Clean_Testimonials' ) )
-require_once( $path . 'class.clean-testimonials.php' );
+if( !class_exists( 'Plugify_Clean_Testimonials' ) ) {
+	require_once( $path . 'class.clean-testimonials.php' );
+}
 
-if( !class_exists( 'WP_Testimonial' ) )
-require_once( $path . 'class.wp-testimonial.php' );
+if( !class_exists( 'WP_Testimonial' ) ) {
+	require_once( $path . 'class.wp-testimonial.php' );
+}
 
 require_once( $path . 'lib/functions.php' );
 require_once( $path . 'lib/shortcodes.php' );
