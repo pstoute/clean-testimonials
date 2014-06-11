@@ -27,7 +27,7 @@ final class Plugify_Clean_Testimonials {
 		add_action( 'wp_ajax_nopriv_get_random_testimonial', array( __CLASS__, 'ajax_get_random_testimonial' ) );
 
 		// Install tasks
-		register_activation_hook( trailingslashit( dirname( __FILE__ ) ) . 'init.php', array( &$this, 'install' ) );
+		register_activation_hook( trailingslashit( dirname( __FILE__ ) ) . 'clean-testimonials.php', array( &$this, 'install' ) );
 
 	}
 
