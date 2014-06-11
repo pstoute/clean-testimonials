@@ -9,6 +9,7 @@ final class Plugify_Clean_Testimonials {
 		// Register actions
 		add_action( 'init', array( __CLASS__, 'init' ) );
 		add_action( 'admin_init', array( __CLASS__, 'admin_init' ) );
+		add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
 		add_action( 'widgets_init', array( __CLASS__, 'widgets_init' ) );
 		add_action( 'wp_insert_post', array( __CLASS__, 'insert_testimonial' ), 10, 1 );
 		add_action( 'manage_posts_custom_column', array( __CLASS__, 'testimonial_column' ), 10, 2 );
@@ -33,7 +34,9 @@ final class Plugify_Clean_Testimonials {
 	public static function install () {
 
 		// Store timestamp of when activation occured
-		update_option( 'ct_activated', time() );
+		if( !get_option( 'ct_activated' ) ) {
+			update_option( 'ct_activated', time() );
+		}
 
 	}
 
@@ -113,7 +116,20 @@ final class Plugify_Clean_Testimonials {
 
 	public static function admin_init () {
 
+		// Add metabox for testimonial meta
 		add_meta_box( 'testimonial-details', 'Client Details', array( __CLASS__, 'testimonial_metabox' ), 'testimonial', 'normal', 'core' );
+
+	}
+
+	public static function admin_notices () {
+
+		// Display donation prompt if CT has been installed for more than two weeks
+		$installed = get_option( 'ct_activated' );
+
+		if( time() >= ( $installed + ( 86400 * 14 ) ) && !get_option( 'ct_prompted' ) ) {
+			echo '<div id="message" class="updated"><p>' . __( 'Loving Clean Testimonials? Help support development by <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=hello%40plugify%2eio&item_name=Plugify%20Plugins%20Development%20Donation&currency_code=USD" target="_blank">buying us a coffee</a>, or leave a <a href="http://wordpress.org/support/view/plugin-reviews/clean-testimonials?filter=5" target="_blank">rating for us!</a> You\'ll never see this again, don\'t worry.', 'clean-testimonials' ) . '</p></div>';
+			update_option( 'ct_prompted', 'yes' );
+		}
 
 	}
 
@@ -253,7 +269,7 @@ final class Plugify_Clean_Testimonials {
 		) );
 
 		if( $testimonial ) {
-			
+
 			$testimonial = new WP_Testimonial( $testimonial[0]->ID );
 			$testimonial->word_limit = isset( $_POST['word_limit'] ) ? $_POST['word_limit'] : -1;
 
