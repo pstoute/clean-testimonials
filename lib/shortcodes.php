@@ -77,10 +77,20 @@ function shortcode_testimonials ( $atts ) {
 
 	if( isset( $atts['category'] ) ) {
 
-		$category = get_term_by( 'id', $atts['category'], 'testimonial_category' );
-		$args['testimonial_category'] = $category->slug;
+		$ids 	= explode( ',', $atts['category'] );
+		$slugs = array();
+
+		foreach( $ids as $id ) {
+			if( $term = get_term_by( 'id', $id, 'testimonial_category' ) ) {
+				$slugs[] = $term->slug;
+			}
+		}
+
+		$args['testimonial_category'] = implode( ',', $slugs );
 
 	}
+
+	echo '<pre>' . print_r( $args, true ) . '</pre>';
 
 	if( query_posts( $args ) ) {
 
