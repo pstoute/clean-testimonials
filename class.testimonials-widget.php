@@ -28,7 +28,7 @@ final class Testimonials_Widget extends WP_Widget {
 
 			if( is_array( $instance['testimonial_random_category'] ) )
 			$query_args['testimonial_category'] = implode( ',', array_keys( $instance['testimonial_random_category'] ) );
-			
+
 			$query_args['orderby'] = 'rand';
 		}
 
@@ -39,9 +39,9 @@ final class Testimonials_Widget extends WP_Widget {
 
 		echo $before_widget;
 
-		if ( strlen( $title ) ) {			
+		if ( strlen( $title ) ) {
 			echo $before_title . $title . $after_title;
-		}		
+		}
 
 		if ( $testimonials ) {
 
@@ -81,7 +81,7 @@ final class Testimonials_Widget extends WP_Widget {
 			'title' => '',
 			'testimonial_id' => 'random',
 			'testimonial_word_limit' => NULL,
-			'testimonial_random_category' => 'derp'
+			'testimonial_random_category' => ''
 
 		);
 
