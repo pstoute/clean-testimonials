@@ -241,13 +241,11 @@ function shortcode_testimonial_submission ( $atts ) {
 
 			}
 
-			echo sprintf( '<p>%s</p>', apply_filters( 'new_testimonial_confirmation_message', 'We successfully received your testimonial. If approved, it will appear on our website. Thank you!' ) );
+			echo sprintf( '<p>%s</p>', apply_filters( 'new_testimonial_confirmation_message', __( 'We successfully received your testimonial. If approved, it will appear on our website. Thank you!', 'clean-testimonials' ) ) );
 
 		}
 		else {
-
-			echo sprintf( '<p class="error">%s</p>', apply_filters( 'new_testimonial_failure_message', 'Sorry, but there was a problem with submitting your testimonial. Please ensure all required fields have been supplied and that you entered the CAPTCHA code correctly.' ) );
-
+			echo sprintf( '<p class="error">%s</p>', apply_filters( 'new_testimonial_failure_message', __( 'Sorry, but there was a problem with submitting your testimonial. Please ensure all required fields have been supplied and that you entered the CAPTCHA code correctly.', 'clean-testimonials' ) ) );
 		}
 
 	else:
@@ -262,16 +260,16 @@ function shortcode_testimonial_submission ( $atts ) {
 
 	<form id="add-testimonial" enctype="multipart/form-data" name="add-testimonial" method="POST" action="<?php the_permalink(); ?>">
 
-		<label for="testimonial_title">Testimonial Title (eg, &quot;I'm so super happy!&quot;)</label><br />
+		<label for="testimonial_title"><?php _e( 'Testimonial Title' ,'clean-testimonials' ); ?> (eg, &quot;<?php _e( "I'm so super happy", 'clean-testimonials' ); ?>!&quot;)</label><br />
 		<input type="text" name="testimonial_title" required="required"/><br />
 
-		<label for="testimonial_description">Your Testimonial (be as descriptive as you like here!)</label><br />
+		<label for="testimonial_description"><?php _e( 'Your Testimonial (be as descriptive as you like here!)', 'clean-testimonials' ); ?></label><br />
 		<textarea name="testimonial_description" rows="10" cols="20" required="required"></textarea><br />
 
-		<label for="testimonial_category_group">Category (optional)</label><br />
+		<label for="testimonial_category_group"><?php _e( 'Category (optional)', 'clean-testimonials' ); ?></label><br />
 		<select name="testimonial_category_group">
 
-			<option value="">None</option>
+			<option value=""><?php _e( 'None', 'clean-testimonials' ); ?></option>
 
 			<?php if( $terms = get_terms( 'testimonial_category', array( 'hide_empty' => false ) ) ): ?>
 
@@ -283,24 +281,24 @@ function shortcode_testimonial_submission ( $atts ) {
 
 		</select><br />
 
-		<label for="testimonial_client_name">Your Name</label><br />
+		<label for="testimonial_client_name"><?php _e( 'Your Name', 'clean-testimonials' ); ?></label><br />
 		<input type="text" name="testimonial_client_name" id="testimonial_client_name" required="required"/><br />
 
-		<label for="testimonial_client_company_name">Company Name <em>(optional)</em></label><br />
+		<label for="testimonial_client_company_name"><?php _e( 'Company Name', 'clean-testimonials' ); ?> <em><?php _e( '(optional)', 'clean-testimonials' ); ?></em></label><br />
 		<input type="text" name="testimonial_client_company_name" id="testimonial_client_company_name" /><br />
 
-		<label for="testimonial_client_email">Your Email <em>(optional)</em></label><br />
+		<label for="testimonial_client_email"><?php _e( 'Your Email' ,'clean-testimonials' ); ?> <em><?php _e( '(optional)', 'clean-testimonials' ); ?></em></label><br />
 		<input type="text" name="testimonial_client_email" id="testimonial_client_email" /><br />
 
-		<label for="testimonial_client_company_website">Your Website <em>(optional)</em></label><br />
+		<label for="testimonial_client_company_website"><?php _e( 'Your Website', 'clean-testimonials' ); ?> <em><?php _e( '(optional)', 'clean-testimonials' ); ?></em></label><br />
 		<input type="text" name="testimonial_client_company_website" id="testimonial_client_company_website" /><br />
 
-		<label for="thumbnail">Thumbnail <em>(optional)</em></label><br />
+		<label for="thumbnail"><?php _e( 'Thumbnail', 'clean-testimonials' ); ?> <em><?php _e( '(optional)', 'clean-testimonials' ); ?></em></label><br />
 		<input type="file" name="thumbnail" id="thumbnail" /><br />
 
-		<label for="permission">Can we display your contact details? (EG, email and website)?</label><br />
-		<input type="radio" name="permission" value="no" required="required" />&nbsp;No<br />
-		<input type="radio" name="permission" value="yes" required="required" />&nbsp;Yes<br />
+		<label for="permission"><?php _e( 'Can we display your contact details? (EG, email and website)', 'clean-testimonials' ); ?>?</label><br />
+		<input type="radio" name="permission" value="no" required="required" />&nbsp;<?php _e( 'No', 'clean-testimonials' ); ?><br />
+		<input type="radio" name="permission" value="yes" required="required" />&nbsp;<?php _e( 'Yes', 'clean-testimonials' ); ?><br />
 
 		<!-- hidden postback test field and nonce -->
 		<input type="hidden" name="testimonial-postback" value="true" />
