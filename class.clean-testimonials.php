@@ -142,13 +142,13 @@ final class Plugify_Clean_Testimonials {
 	public static function testimonial_columns ( $columns ) {
 
 		unset( $columns['date'] );
-		$columns['testimonial_client_name'] = 'Client';
-		$columns['testimonial_client_company_name'] = 'Company';
-		$columns['testimonial_category'] = 'Category';
-		$columns['testimonial_shortcode'] = 'Shortcode';
-		$columns['testimonial_thumbnail'] = 'Thumbnail';
+		$columns['testimonial_client_name'] = __( 'Client', 'clean-testimonials' );
+		$columns['testimonial_client_company_name'] = __( 'Company', 'clean-testimonials' );
+		$columns['testimonial_category'] = __( 'Category', 'clean-testimonials' );
+		$columns['testimonial_shortcode'] = __( 'Shortcode', 'clean-testimonials' );
+		$columns['testimonial_thumbnail'] = __( 'Thumbnail', 'clean-testimonials' );
 
-		$columns['date'] = 'Date';
+		$columns['date'] = __( 'Date', 'clean-testimonials' );
 
 		return $columns;
 
@@ -188,7 +188,7 @@ final class Plugify_Clean_Testimonials {
 				if( has_post_thumbnail( $post->ID ) )
 					echo wp_get_attachment_image( get_post_thumbnail_id( $post->ID ), array( 64, 64 ) );
 				else
-					echo 'No thumbnail supplied';
+					echo __( 'No thumbnail supplied', 'clean-testimonials' );
 
 				break;
 
@@ -206,10 +206,10 @@ final class Plugify_Clean_Testimonials {
 		return array(
 
 			'cb' => '<input type="checkbox" />"',
-			'name' => 'Name',
-			'shortcode' => 'Shortcode',
-			'slug' => 'Slug',
-			'posts' => 'Testimonials'
+			'name' => __( 'Name', 'clean-testimonials' ),
+			'shortcode' => __( 'Shortcode', 'clean-testimonials' ),
+			'slug' => __( 'Slug', 'clean-testimonials' ),
+			'posts' => __( 'Testimonials', 'clean-testimonials' )
 
 		);
 
@@ -234,22 +234,22 @@ final class Plugify_Clean_Testimonials {
 			<tr>
 				<td valign="middle" align="left" width="125"><label for="testimonial_client_name">Client Name</label></td>
 				<td valign="middle" align="left" width="150"><input type="text" name="testimonial_client_name" value="<?php echo esc_attr( get_post_meta( $post->ID, 'testimonial_client_name', true ) ); ?>" />
-				<td valign="middle" align="left"><em>The name of the client giving this testimonial</em></td>
+				<td valign="middle" align="left"><em><?php _e( 'The name of the client giving this testimonial', 'clean-testimonials' ); ?></em></td>
 			</tr>
 			<tr>
 				<td valign="middle" align="left"><label for="testimonial_client_company_name">Company Name</label></td>
 				<td valign="middle" align="left"><input type="text" name="testimonial_client_company_name" value="<?php echo esc_attr( get_post_meta( $post->ID, 'testimonial_client_company_name', true ) ); ?>" />
-				<td valign="middle" align="left"><em>The company which this client represents</em></td>
+				<td valign="middle" align="left"><em><?php _e( 'The company which this client represents', 'clean-testimonials' ); ?></em></td>
 			</tr>
 			<tr>
 				<td valign="middle" align="left"><label for="testimonial_client_email">Email</label></td>
 				<td valign="middle" align="left"><input type="text" name="testimonial_client_email" value="<?php echo esc_attr( get_post_meta( $post->ID, 'testimonial_client_email', true ) ); ?>" />
-				<td valign="middle" align="left"><em>Contact email address of whom is giving the testimonial</em></td>
+				<td valign="middle" align="left"><em><?php _e( 'Contact email address of whom is giving the testimonial', 'clean-testimonials' ); ?></em></td>
 			</tr>
 			<tr>
 				<td valign="middle" align="left"><label for="testimonial_client_website">Website</label></td>
 				<td valign="middle" align="left"><input type="text" name="testimonial_client_company_website" value="<?php echo esc_attr( get_post_meta( $post->ID, 'testimonial_client_company_website', true ) ); ?>" />
-				<td valign="middle" align="left"><em>Website of whom is giving the testimonial</em></td>
+				<td valign="middle" align="left"><em><?php _e( 'Website of whom is giving the testimonial', 'clea-testimonials' ); ?></em></td>
 			</tr>
 
 		</table>
