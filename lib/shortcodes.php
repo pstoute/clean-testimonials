@@ -175,17 +175,24 @@ function shortcode_testimonial_submission ( $atts ) {
 
 		);
 
-		// Ensure CAPTCHA passed
-		require_once( trailingslashit( dirname( __FILE__ ) ) . 'recaptchalib.php' );
+		// Only process captcha if it is not disabled by a filter
+		$captcha = true;
 
-		$captcha = recaptcha_check_answer(
+		if( !apply_filters( 'ct_disable_captcha', false ) ) {
 
-			'6Letc-kSAAAAANmcKKUmmybcly0ma7LXXc5Llcmm',
-			$_SERVER['REMOTE_ADDR'],
-			$_POST['recaptcha_challenge_field'],
-			$_POST['recaptcha_response_field']
+			// Ensure CAPTCHA passed
+			require_once( trailingslashit( dirname( __FILE__ ) ) . 'recaptchalib.php' );
 
-		)->is_valid;
+			$captcha = recaptcha_check_answer(
+
+				'6Letc-kSAAAAANmcKKUmmybcly0ma7LXXc5Llcmm',
+				$_SERVER['REMOTE_ADDR'],
+				isset( $_POST['recaptcha_challenge_field'] ) ? $_POST['recaptcha_challenge_field'] : '',
+				isset( $_POST['recaptcha_response_field'] ) ? $_POST['recaptcha_response_field'] : ''
+
+			)->is_valid;
+
+		}
 
 		// Insert new testimonial, if successful, update meta data
 		if( ( $post_id = wp_insert_post( $testimonial, false ) ) && $captcha ) {
@@ -301,9 +308,13 @@ function shortcode_testimonial_submission ( $atts ) {
 
 		<?php
 
-		require_once( trailingslashit( dirname( __FILE__ ) ) . 'recaptchalib.php' );
+		if( !apply_filters( 'ct_disable_captcha', false ) ) {
 
-		echo recaptcha_get_html('6Letc-kSAAAAAHOFnLaXa5lGfXLS9NN0InD0LsJP');
+			// Output captcha field if it is not disabled
+			require_once( trailingslashit( dirname( __FILE__ ) ) . 'recaptchalib.php' );
+			echo recaptcha_get_html('6Letc-kSAAAAAHOFnLaXa5lGfXLS9NN0InD0LsJP');
+
+		}
 
 		?>
 
