@@ -35,9 +35,11 @@ This plugin is in constant development. If you have any feature requests or ques
 * Categorize Testimonials any way you see fit and display those categories wherever you like.
 * Creates a Testimonial Widget which allows you to display your testimonials in sidebar or widgetized areas.
 * Display random testimonials using either a shortcode or the built-in widget.
+* Ships with CAPTCHA support, but you can turn it off if you like
 * Allows your visitors to upload a thumbnail with their testimonial.
 * Allows your visitors to choose whether their contact details are displayed with their testimonials.
 * Allows powerful customizations for developers.
+* Setup for translation, so if you're a translator, get translating!
 * Supports **WP-Paginate** if installed.
 
 **Please Note:** Although any output Clean Testimonials generates is well structured, no styling is shipped out of the box. This means it is up to your theme to decide how the output will be styled.
@@ -69,6 +71,8 @@ You can copy and paste the testimonial shortcode complete with ID from your Test
 = How can I display a category of testimonials? =
 
 To display a category of testimonials (with pagination!), you can use the [testimonials category="xyz"] shortcode. where "xyz" is the ID of the testimonial category you wish to display.
+You can also display testimonials from multiple categories by using [testimonials category="xyz,abc"] where "xyz" is the first ID and "abc" is the second. You can pass in as many ID's as you like, just separate them with commas.
+
 You can copy and paste this shortcode complete with ID from the Testimonials -> Categories admin page in WordPress.
 
 = Can I display a random testimonial? =
@@ -86,6 +90,12 @@ The following filters are available in Clean Testimonials so you can customise i
 2. new_testimonial_email - Filter which email address which the new testimonial notification email is sent to. Defaults to administrator email.
 3. new_testimonial_confirmation_message - Filter the text which is displayed when a new testimonial is received.
 4. new_testimonial_failure_message - Filter the text which is displayed when a testimonial submission fails.
+5. ct_disable_captcha - Return true to disable captcha on the testimonial submission form
+
+= Available actions =
+The following actions are available in Clean Testimonials so you can customise it to your liking.
+1. ct_before_render_testimonial - Fires before a testimonial is rendered. Passes in $testimonial and $context
+1. ct_after_render_testimonial - Fires after a testimonial is rendered. Passes in $testimonial and $context
 
 = I am a developer, what can you tell me? =
 
@@ -107,6 +117,7 @@ The following information might be handy for you to know.
 
 = 1.5.1 =
 * Added translation support.
+* Added filter "ct_disable_captcha" to allow disabling captcha.
 * Multiple categories can now be passed in a shortcode. EG, [testimonials category="34,87,33" per_page="25"].
 * Added a one donation donation/rating request. Enjoying this free plugin? Please show some one time love!
 * Updated PayPal donation address in readme
