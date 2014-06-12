@@ -26,6 +26,9 @@ final class Plugify_Clean_Testimonials {
 		add_action( 'wp_ajax_get_random_testimonial', array( __CLASS__, 'ajax_get_random_testimonial' ) );
 		add_action( 'wp_ajax_nopriv_get_random_testimonial', array( __CLASS__, 'ajax_get_random_testimonial' ) );
 
+		// Load textdomain
+		$this->load_textdomain();
+		
 		// Install tasks
 		register_activation_hook( trailingslashit( dirname( __FILE__ ) ) . 'clean-testimonials.php', array( &$this, 'install' ) );
 
@@ -36,6 +39,39 @@ final class Plugify_Clean_Testimonials {
 		// Store timestamp of when activation occured
 		if( !get_option( 'ct_activated' ) ) {
 			update_option( 'ct_activated', time() );
+		}
+
+	}
+
+	/**
+	* Load language files
+	*
+	* @since 1.5.1
+	*
+	* @return void
+	*/
+	public function load_textdomain() {
+
+		// Set filter for plugin's languages directory
+		$lang_dir = plugin_dir_path( __FILE__ ) . 'languages/';
+
+		// Traditional WordPress plugin locale filter
+		$locale = apply_filters( 'plugin_locale', get_locale(), 'clean-testimonials' );
+		$mofile = sprintf( '%1$s-%2$s.mo', 'clean-testimonials', $locale );
+
+		// Setup paths to current locale file
+		$mofile_local = $lang_dir . $mofile;
+		$mofile_global = WP_LANG_DIR . '/clean-testimonials/' . $mofile;
+
+		if ( file_exists( $mofile_global ) ) {
+			load_textdomain( 'clean-testimonials', $mofile_global );
+		}
+		elseif ( file_exists( $mofile_local ) ) {
+			load_textdomain( 'clean-testimonials', $mofile_local );
+		}
+		else {
+			// Load the default language files
+			load_plugin_textdomain( 'clean-testimonials', false, $lang_dir );
 		}
 
 	}
