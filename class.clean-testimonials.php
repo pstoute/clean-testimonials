@@ -47,16 +47,16 @@ final class Plugify_Clean_Testimonials {
 		≈=====≈=====≈=====≈=====≈=====≈=====≈=====*/
 		// Setup core dependencies
 		$post_type_labels = array(
-			'name' => _x( 'Testimonials', 'post type general name' ),
-			'singular_name' => _x( 'Testimonial', 'post type singular name' ),
-			'add_new' => _x( 'Add New', 'testimonial item' ),
-			'add_new_item' => __( 'Add New Testimonial' ),
-			'edit_item' => __( 'Edit Testimonial' ),
-			'new_item' => __( 'New Testimonial' ),
-			'view_item' => __( 'View Testimonial' ),
-			'search_items' => __( 'Search Testimonials' ),
-			'not_found' =>  __( 'No Testimonials found' ),
-			'not_found_in_trash' => __( 'No Testimonials found in the trash' ),
+			'name' => __( 'Testimonials', 'clean-testimonials' ),
+			'singular_name' => __( 'Testimonial', 'clean-testimonials' ),
+			'add_new' => __( 'Add New', 'clean-testimonials' ),
+			'add_new_item' => __( 'Add New Testimonial', 'clean-testimonials' ),
+			'edit_item' => __( 'Edit Testimonial', 'clean-testimonials' ),
+			'new_item' => __( 'New Testimonial', 'clean-testimonials' ),
+			'view_item' => __( 'View Testimonial', 'clean-testimonials' ),
+			'search_items' => __( 'Search Testimonials', 'clean-testimonials' ),
+			'not_found' =>  __( 'No Testimonials found', 'clean-testimonials' ),
+			'not_found_in_trash' => __( 'No Testimonials found in the trash', 'clean-testimonials' ),
 			'parent_item_colon' => ''
 		);
 
@@ -64,7 +64,7 @@ final class Plugify_Clean_Testimonials {
 		register_post_type( 'testimonial',
 			array(
 				 'labels' => $post_type_labels,
-				 'singular_label' => _x( 'Testimonial', 'post type singular label' ),
+				 'singular_label' => __( 'Testimonial', 'clean-testimonials' ),
 				 'public' => true,
 				 'show_ui' => true,
 				 '_builtin' => false,
@@ -83,17 +83,17 @@ final class Plugify_Clean_Testimonials {
 		≈=====≈=====≈=====≈=====≈=====≈=====≈=====*/
 		// Register and configure Testimonial Category taxonomy
 		$taxonomy_labels = array(
-			'name' => _x( 'Testimonial Categories', 'taxonomy general name' ),
-			'singular_name' => _x( 'Testimonial Category', 'taxonomy singular name' ),
-			'search_items' =>  __( 'Search Testimonial Categories' ),
-			'all_items' => __( 'All Testimonial Categories' ),
-			'parent_item' => __( 'Parent Testimonial Categories' ),
-			'parent_item_colon' => __( 'Parent Testimonial Category' ),
-			'edit_item' => __( 'Edit Testimonial Category' ),
-			'update_item' => __( 'Update Testimonial Category' ),
-			'add_new_item' => __( 'Add New Testimonial Category' ),
-			'new_item_name' => __( 'New Testimonial Category' ),
-			'menu_name' => __( 'Categories' )
+			'name' => __( 'Testimonial Categories', 'clean-testimonials' ),
+			'singular_name' => __( 'Testimonial Category', 'clean-testimonials' ),
+			'search_items' =>  __( 'Search Testimonial Categories', 'clean-testimonials' ),
+			'all_items' => __( 'All Testimonial Categories', 'clean-testimonials' ),
+			'parent_item' => __( 'Parent Testimonial Categories', 'clean-testimonials' ),
+			'parent_item_colon' => __( 'Parent Testimonial Category', 'clean-testimonials' ),
+			'edit_item' => __( 'Edit Testimonial Category', 'clean-testimonials' ),
+			'update_item' => __( 'Update Testimonial Category', 'clean-testimonials' ),
+			'add_new_item' => __( 'Add New Testimonial Category', 'clean-testimonials' ),
+			'new_item_name' => __( 'New Testimonial Category', 'clean-testimonials' ),
+			'menu_name' => __( 'Categories', 'clean-testimonials' )
 	  );
 
 		register_taxonomy( 'testimonial_category', 'testimonial', array(
@@ -232,22 +232,22 @@ final class Plugify_Clean_Testimonials {
 		<table class="testimonial-client-details">
 
 			<tr>
-				<td valign="middle" align="left" width="125"><label for="testimonial_client_name">Client Name</label></td>
+				<td valign="middle" align="left" width="125"><label for="testimonial_client_name"><?php _e( 'Client Name', 'clean-testimonials' ); ?></label></td>
 				<td valign="middle" align="left" width="150"><input type="text" name="testimonial_client_name" value="<?php echo esc_attr( get_post_meta( $post->ID, 'testimonial_client_name', true ) ); ?>" />
 				<td valign="middle" align="left"><em><?php _e( 'The name of the client giving this testimonial', 'clean-testimonials' ); ?></em></td>
 			</tr>
 			<tr>
-				<td valign="middle" align="left"><label for="testimonial_client_company_name">Company Name</label></td>
+				<td valign="middle" align="left"><label for="testimonial_client_company_name"><?php _e( 'Company Name', 'clean-testimonials' ); ?></label></td>
 				<td valign="middle" align="left"><input type="text" name="testimonial_client_company_name" value="<?php echo esc_attr( get_post_meta( $post->ID, 'testimonial_client_company_name', true ) ); ?>" />
 				<td valign="middle" align="left"><em><?php _e( 'The company which this client represents', 'clean-testimonials' ); ?></em></td>
 			</tr>
 			<tr>
-				<td valign="middle" align="left"><label for="testimonial_client_email">Email</label></td>
+				<td valign="middle" align="left"><label for="testimonial_client_email"><?php echo _e( 'Email', 'clean-testimonials' ); ?></label></td>
 				<td valign="middle" align="left"><input type="text" name="testimonial_client_email" value="<?php echo esc_attr( get_post_meta( $post->ID, 'testimonial_client_email', true ) ); ?>" />
 				<td valign="middle" align="left"><em><?php _e( 'Contact email address of whom is giving the testimonial', 'clean-testimonials' ); ?></em></td>
 			</tr>
 			<tr>
-				<td valign="middle" align="left"><label for="testimonial_client_website">Website</label></td>
+				<td valign="middle" align="left"><label for="testimonial_client_website"><?php _e( 'Website', 'clean-testimonials' ); ?></label></td>
 				<td valign="middle" align="left"><input type="text" name="testimonial_client_company_website" value="<?php echo esc_attr( get_post_meta( $post->ID, 'testimonial_client_company_website', true ) ); ?>" />
 				<td valign="middle" align="left"><em><?php _e( 'Website of whom is giving the testimonial', 'clea-testimonials' ); ?></em></td>
 			</tr>

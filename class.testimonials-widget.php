@@ -90,14 +90,14 @@ final class Testimonials_Widget extends WP_Widget {
 		?>
 
 		<p>
-			<label for="testimonials_title">Title:</label>
+			<label for="testimonials_title"><?php _e( 'Title', 'clean-testimonials' ); ?>:</label>
 			<input type="text" id="testimonials_title" name="<?php echo $this->get_field_name( 'title' ) ?>" style="width: 100%;" value="<?php echo $instance['title'] ?>" />
 		</p>
 
 		<p>
-			<label for="testimonial_id">Select a Testimonial to display</label>
+			<label for="testimonial_id"><?php _e( 'Select a Testimonial to display', 'clean-testimonials' ); ?></label>
 			<select class="testimonial_widget_select" name="<?php echo $this->get_field_name( 'testimonial_id' ); ?>" style="width:100%;">
-				<option value="random">Random</option>
+				<option value="random"><?php _e( 'Random', 'clean-testimonials' ); ?></option>
 
 				<?php if( $testimonials = get_posts( array( 'post_type' => 'testimonial', 'numberposts' => -1 ) ) ) :?>
 
@@ -110,13 +110,13 @@ final class Testimonials_Widget extends WP_Widget {
 		</p>
 
 		<p>
-			<label for="testimonial_word_limit">Word limit (optional)</label>
+			<label for="testimonial_word_limit"><?php _e( 'Word limit (optional)', 'clean-testimonials' ); ?></label>
 			<input type="Text" name="<?php echo $this->get_field_name( 'testimonial_word_limit' ); ?>" style="width:100%;" value="<?php echo $instance['testimonial_word_limit']; ?>" />
 		</p>
 
 		<div class="testimonial_random_category">
 
-			<p>If random, get from specific category (optional)</p>
+			<p><?php _e( 'If random, get from specific category (optional)', 'clean-testimonials' ); ?></p>
 
 			<p>
 				<?php if( $categories = get_terms( 'testimonial_category', array( 'hide_empty' => false ) ) ) foreach( $categories as $category ): $id = uniqid(); ?>
