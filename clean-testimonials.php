@@ -4,7 +4,7 @@ Plugin Name: Clean Testimonials
 Plugin URI: http://plugify.io
 Description: Allows you to easily and quickly add Testimonials to your WordPress website
 Author: Plugify
-Version: 1.5.2
+Version: 1.5.2.1
 Author URI: https://plugify.io
 */
 
