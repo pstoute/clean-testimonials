@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=hello
 Tags: testimonials,testimonial,recommendation,recommend,testimony,reference,referral,widget,reviews,review
 Requires at least: 2.5
 Tested up to: 3.8.1
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,6 +114,9 @@ The following information might be handy for you to know.
 5. Example use of the [testimonial-submission-form] shortcode. This shortcode will turn this page into a Testimonial submission page for your users
 
 == Changelog ==
+
+= 1.5.2 =
+* Removed developer output from [testimonials] shortcode
 
 = 1.5.1 =
 * Added translation support.
