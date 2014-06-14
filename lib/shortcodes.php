@@ -90,8 +90,6 @@ function shortcode_testimonials ( $atts ) {
 
 	}
 
-	echo '<pre>' . print_r( $args, true ) . '</pre>';
-
 	if( query_posts( $args ) ) {
 
 		if( have_posts() ) {
