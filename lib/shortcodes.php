@@ -257,15 +257,21 @@ function shortcode_testimonial_submission ( $atts ) {
 	</script>
 
 	<form id="add-testimonial" enctype="multipart/form-data" name="add-testimonial" method="POST" action="<?php the_permalink(); ?>">
-
-		<label for="testimonial_title"><?php _e( 'Testimonial Title' ,'clean-testimonials' ); ?> (eg, &quot;<?php _e( "I'm so super happy", 'clean-testimonials' ); ?>!&quot;)</label><br />
-		<input type="text" name="testimonial_title" required="required"/><br />
-
-		<label for="testimonial_description"><?php _e( 'Your Testimonial (be as descriptive as you like here!)', 'clean-testimonials' ); ?></label><br />
-		<textarea name="testimonial_description" rows="10" cols="20" required="required"></textarea><br />
-
-		<label for="testimonial_category_group"><?php _e( 'Category (optional)', 'clean-testimonials' ); ?></label><br />
-		<select name="testimonial_category_group">
+		<div class="form-group">
+			<label for="testimonial_title"><?php _e( 'Testimonial Title' ,'clean-testimonials' ); ?> (eg, &quot;<?php _e( "I'm so super happy", 'clean-testimonials' ); ?>!&quot;)</label><br />
+			<input class="form-control" type="text" name="testimonial_title" required="required"/><br />
+		</div>
+		<div class="form-group">
+			<label for="testimonial_client_name"><?php _e( 'Your Name', 'clean-testimonials' ); ?></label><br />
+			<input class="form-control" type="text" name="testimonial_client_name" id="testimonial_client_name" required="required"/><br />
+		</div>
+		<div class="form-group">
+			<label for="testimonial_description"><?php _e( 'Your Testimonial (be as descriptive as you like here!)', 'clean-testimonials' ); ?></label><br />
+			<textarea class="form-control" name="testimonial_description" rows="10" cols="20" required="required"></textarea><br />
+		</div>
+		<div class="form-group">
+			<label for="testimonial_category_group"><?php _e( 'Category (optional)', 'clean-testimonials' ); ?></label><br />
+			<select class="form-control" name="testimonial_category_group">
 
 			<option value=""><?php _e( 'None', 'clean-testimonials' ); ?></option>
 
@@ -278,26 +284,28 @@ function shortcode_testimonial_submission ( $atts ) {
 			<?php endif; ?>
 
 		</select><br />
-
-		<label for="testimonial_client_name"><?php _e( 'Your Name', 'clean-testimonials' ); ?></label><br />
-		<input type="text" name="testimonial_client_name" id="testimonial_client_name" required="required"/><br />
-
-		<label for="testimonial_client_company_name"><?php _e( 'Company Name', 'clean-testimonials' ); ?> <em><?php _e( '(optional)', 'clean-testimonials' ); ?></em></label><br />
-		<input type="text" name="testimonial_client_company_name" id="testimonial_client_company_name" /><br />
-
-		<label for="testimonial_client_email"><?php _e( 'Your Email' ,'clean-testimonials' ); ?> <em><?php _e( '(optional)', 'clean-testimonials' ); ?></em></label><br />
-		<input type="text" name="testimonial_client_email" id="testimonial_client_email" /><br />
-
-		<label for="testimonial_client_company_website"><?php _e( 'Your Website', 'clean-testimonials' ); ?> <em><?php _e( '(optional)', 'clean-testimonials' ); ?></em></label><br />
-		<input type="text" name="testimonial_client_company_website" id="testimonial_client_company_website" /><br />
-
-		<label for="thumbnail"><?php _e( 'Thumbnail', 'clean-testimonials' ); ?> <em><?php _e( '(optional)', 'clean-testimonials' ); ?></em></label><br />
-		<input type="file" name="thumbnail" id="thumbnail" /><br />
-
-		<label for="permission"><?php _e( 'Can we display your contact details? (EG, email and website)', 'clean-testimonials' ); ?>?</label><br />
-		<input type="radio" name="permission" value="no" required="required" />&nbsp;<?php _e( 'No', 'clean-testimonials' ); ?><br />
-		<input type="radio" name="permission" value="yes" required="required" />&nbsp;<?php _e( 'Yes', 'clean-testimonials' ); ?><br />
-
+		</div>
+		<div class="form-group">
+			<label for="testimonial_client_company_name"><?php _e( 'Company Name', 'clean-testimonials' ); ?> <em><?php _e( '(optional)', 'clean-testimonials' ); ?></em></label><br />
+			<input class="form-control" type="text" name="testimonial_client_company_name" id="testimonial_client_company_name" /><br />
+		</div>
+		<div class="form-group">
+			<label for="testimonial_client_email"><?php _e( 'Your Email' ,'clean-testimonials' ); ?> <em><?php _e( '(optional)', 'clean-testimonials' ); ?></em></label><br />
+			<input class="form-control" type="text" name="testimonial_client_email" id="testimonial_client_email" /><br />
+		</div>
+		<div class="form-group">
+			<label for="testimonial_client_company_website"><?php _e( 'Your Website', 'clean-testimonials' ); ?> <em><?php _e( '(optional)', 'clean-testimonials' ); ?></em></label><br />
+			<input class="form-control" type="text" name="testimonial_client_company_website" id="testimonial_client_company_website" /><br />
+		</div>
+		<div class="form-group">
+			<label for="thumbnail"><?php _e( 'Thumbnail', 'clean-testimonials' ); ?> <em><?php _e( '(optional)', 'clean-testimonials' ); ?></em></label><br />
+			<input type="file" name="thumbnail" id="thumbnail" /><br />
+		</div>
+		<div class="checkbox-inline">
+			<span class="help-block"><?php _e( 'Can we display your contact details? (EG, email and website)', 'clean-testimonials' ); ?>?</span>
+			<label for="perm2"><input type="radio" name="permission" id="perm2" value="yes" required="required" />&nbsp;<?php _e( 'Yes', 'clean-testimonials' ); ?></label>
+			<label for="perm1"><input type="radio" name="permission" id="perm1" value="no" required="required" />&nbsp;<?php _e( 'No', 'clean-testimonials' ); ?></label>
+		</div>
 		<!-- hidden postback test field and nonce -->
 		<input type="hidden" name="testimonial-postback" value="true" />
 		<input type="hidden" name="testimonial_nonce" value="<?php echo wp_create_nonce( 'add-testimonial' ); ?>" />
@@ -314,7 +322,7 @@ function shortcode_testimonial_submission ( $atts ) {
 
 		?>
 
-		<input type="submit" id="submit-testimonial" value="Submit Testimonial" />
+		<button class="btn btn-default btn-block" type="submit" id="submit-testimonial" value="Submit Testimonial">Submit Testimonial</button>
 
 	</form>
 
